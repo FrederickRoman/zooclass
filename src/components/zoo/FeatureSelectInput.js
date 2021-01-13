@@ -4,7 +4,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-// import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -17,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeatureSelectInput() {
+function FeatureSelectInput({ label, values, defaultValue, texts, id }) {
   const classes = useStyles();
-  const [legs, setLegs] = React.useState(4);
+  const [selection, setSelection] = React.useState(defaultValue);
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setLegs(event.target.value);
+    setSelection(event.target.value);
   };
 
   const handleClose = () => {
@@ -36,29 +35,22 @@ function FeatureSelectInput() {
 
   return (
     <div>
-      {/* <Button className={classes.button} onClick={handleOpen}>
-        Open the select
-      </Button> */}
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Legs</InputLabel>
+        <InputLabel id={id}>{label}</InputLabel>
         <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
+          labelId={id}
+          id={id}
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={legs}
+          value={selection}
           onChange={handleChange}
         >
-          {/* <MenuItem value="">
-            <em>None</em>
-          </MenuItem> */}
-          <MenuItem value={0}>0</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
-          <MenuItem value={8}>8</MenuItem>
+          {values.map((v, i) => (
+            <MenuItem value={v} key={i}>
+              {texts[i]}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>
