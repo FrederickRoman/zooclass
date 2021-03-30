@@ -1,4 +1,6 @@
-const multipleChoiceQuestions = Object.freeze([
+import IMultipleChoiceQuestion from "../../../types/interfaces/IMultipleChoiceQuestion";
+
+const multipleChoiceQuestions: readonly IMultipleChoiceQuestion[] = [
   {
     label: "Legs",
     values: [0, 2, 4, 5, 6, 8],
@@ -6,6 +8,6 @@ const multipleChoiceQuestions = Object.freeze([
     texts: ["0", "2", "4", "5", "6", "8"],
     id: "legs",
   },
-]);
+];
 
 export default multipleChoiceQuestions;

@@ -2,8 +2,8 @@
 // import './App.css';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-import MenuBar from "./components/navigation/MenuBar.js";
-import ZooPanel from "./components/zoo/ZooPanel.js";
+import MenuBar from "./components/navigation/MenuBar";
+import ZooPanel from "./components/zoo/ZooPanel";
 
 function App() {
   return (

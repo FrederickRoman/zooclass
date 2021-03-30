@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -7,36 +7,46 @@ import FormLabel from "@material-ui/core/FormLabel";
 
 import Paper from "@material-ui/core/Paper";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
-  form_container: {
-    padding: "1em",
-    display: "inline-block",
-  },
-  radio_group: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, auto)",
-  },
-  flex_center: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "0px 10px",
-  },
-  text: {
-    heigh: "auto",
-    width: 100,
-  },
-}));
+const useStyles = makeStyles(() =>
+  createStyles({
+    form_container: {
+      padding: "1em",
+      display: "inline-block",
+    },
+    radio_group: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, auto)",
+    },
+    flex_center: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0px 10px",
+    },
+    text: {
+      heigh: "auto",
+      width: 100,
+    },
+  })
+);
 
-function FeatureRadioButton({ start, keyword, end }) {
-  const [value, setValue] = React.useState("yes");
+interface IFeatureRadioButtonProps {
+  start: string;
+  keyword: string;
+  end: string;
+}
+
+function FeatureRadioButton(props: IFeatureRadioButtonProps) {
+  const { start, keyword, end } = props;
+  const INIT_VALUE = "yes";
+  const [value, setValue] = useState<string>(INIT_VALUE);
 
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
   };
 
   return (
