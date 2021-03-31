@@ -26,42 +26,29 @@ interface IFeatureSelectInputProps {
   id: string;
 }
 
-function FeatureSelectInput(props:IFeatureSelectInputProps) {
+function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
   const { label, values, defaultValue, texts, id } = props;
   const classes = useStyles();
   const [selection, setSelection] = useState<number>(defaultValue);
-  const [open, setOpen] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelection(event.target.value as number);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const MenuItems: JSX.Element[] = values.map(
+    (v: number, i: number): JSX.Element => (
+      <MenuItem value={v} key={i}>
+        {texts[i]}
+      </MenuItem>
+    )
+  );
 
   return (
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel id={id}>{label}</InputLabel>
-        <Select
-          labelId={id}
-          id={id}
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={selection}
-          onChange={handleChange}
-        >
-          {values.map((v, i) => (
-            <MenuItem value={v} key={i}>
-              {texts[i]}
-            </MenuItem>
-          ))}
+        <Select labelId={id} id={id} value={selection} onChange={handleChange}>
+          {MenuItems}
         </Select>
       </FormControl>
     </div>
