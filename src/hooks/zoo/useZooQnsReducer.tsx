@@ -1,11 +1,30 @@
 import { useReducer } from "react";
+import IZooBinaryChoices from "../../types/interfaces/IZooBinaryChoices";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import zooFormActionType from "../../types/unions/zooFormActionType";
+
+const binaryChoices: IZooBinaryChoices = {
+  hair: false,
+  feathers: false,
+  eggs: false,
+  milk: false,
+  airborne: false,
+  aquatic: false,
+  predator: false,
+  thooted: false,
+  backbone: false,
+  breath: false,
+  venomous: false,
+  fins: false,
+  tail: false,
+  domestic: false,
+  catsize: false,
+};
 
 function useZooQnsReducer() {
   const INIT_FORM_RESPONSE: IZooFormResponse = {
     multipleChoice: [4],
-    binaryChoice: Array(15).fill(false),
+    binaryChoices,
   };
 
   function reducer(state: IZooFormResponse, action: zooFormActionType) {
@@ -16,11 +35,13 @@ function useZooQnsReducer() {
           multipleChoice: [action.payload],
         };
       case "toggle binary choice boolean":
+        console.log(action.payload)
         return {
           ...state,
-          binaryChoice: state.binaryChoice.map((b: boolean, i: number) =>
-            i === action.payload ? !b : b
-          ),
+          binaryChoices: {
+            ...state.binaryChoices,
+            [action.payload]: !state.binaryChoices[action.payload],
+          },
         };
       default:
         throw new Error();

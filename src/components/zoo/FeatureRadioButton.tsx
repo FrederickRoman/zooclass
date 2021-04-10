@@ -13,6 +13,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import zooFormActionType from "../../types/unions/zooFormActionType";
+import zooBinaryFeatureType from "../../types/unions/zooBinaryFeatureType";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -38,28 +39,6 @@ interface IFeatureRadioButtonProps {
   zooQnsDispatch: React.Dispatch<zooFormActionType>;
 }
 
-interface IattrIndex {
-  [key: string]: number;
-}
-
-const attrsIndex: IattrIndex = {
-  hair: 0,
-  feathers: 1,
-  eggs: 2,
-  milk: 3,
-  airborne: 4,
-  aquatic: 5,
-  predator: 6,
-  thooted: 7,
-  backbone: 8,
-  breath: 9,
-  venomous: 10,
-  fins: 11,
-  tail: 12,
-  domestic: 13,
-  catsize: 14,
-};
-
 function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   const { start, keyword, end, zooQnsDispatch } = props;
   const INIT_VALUE = "yes";
@@ -72,7 +51,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
     console.log(event.target.name);
     zooQnsDispatch({
       type: "toggle binary choice boolean",
-      payload: attrsIndex[event.target.name],
+      payload: event.target.name as zooBinaryFeatureType,
     });
     setValue((event.target as HTMLInputElement).value);
   };
