@@ -5,7 +5,7 @@ import zooFormActionType from "../../types/unions/zooFormActionType";
 function useZooQnsReducer() {
   const INIT_FORM_RESPONSE: IZooFormResponse = {
     multipleChoice: [4],
-    binaryChoice: Array(16).fill(false),
+    binaryChoice: Array(15).fill(false),
   };
 
   function reducer(state: IZooFormResponse, action: zooFormActionType) {

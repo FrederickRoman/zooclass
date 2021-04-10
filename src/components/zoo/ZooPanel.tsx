@@ -8,7 +8,6 @@ import useZooQnsReducer from "../../hooks/zoo/useZooQnsReducer";
 import FeatureMultipleChoiceList from "./FeatureMultipleChoiceList";
 import FeatureBinaryChoiceList from "./FeatureBinaryChoiceList";
 
-
 function ZooPanel(): JSX.Element {
   const [zooQnsState, zooQnsDispatch] = useZooQnsReducer();
 
@@ -26,7 +25,10 @@ function ZooPanel(): JSX.Element {
       </Grid>
       <Grid item>
         <Container>
-          <FeatureBinaryChoiceList />
+          <FeatureBinaryChoiceList
+            zooQnsState={zooQnsState}
+            zooQnsDispatch={zooQnsDispatch}
+          />
         </Container>
       </Grid>
     </Grid>

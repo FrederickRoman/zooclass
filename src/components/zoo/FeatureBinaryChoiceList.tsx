@@ -6,10 +6,18 @@ import FeatureRadioButton from "./FeatureRadioButton";
 import binaryChoiceQuestions from "../assets/data/binaryChoiceQuestions";
 import IBinaryChoiceQuestion from "../../types/interfaces/IBinaryChoiceQuestion";
 
-function FeatureBinaryChoiceList(): JSX.Element {
+import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
+import zooFormActionType from "../../types/unions/zooFormActionType";
+
+interface IFBCLProps {
+  zooQnsState: IZooFormResponse;
+  zooQnsDispatch: React.Dispatch<zooFormActionType>;
+}
+
+function FeatureBinaryChoiceList(props: IFBCLProps): JSX.Element {
   const FeatureRadioButtons = binaryChoiceQuestions.map(
     (question: IBinaryChoiceQuestion, i: number): JSX.Element => (
-      <FeatureRadioButton {...question} key={i} />
+      <FeatureRadioButton {...question} {...props} key={i} />
     )
   );
   return (

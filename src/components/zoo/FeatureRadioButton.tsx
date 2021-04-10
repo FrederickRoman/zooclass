@@ -11,6 +11,9 @@ import Paper from "@material-ui/core/Paper";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
+import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
+import zooFormActionType from "../../types/unions/zooFormActionType";
+
 const useStyles = makeStyles(() =>
   createStyles({
     form_container: {
@@ -31,10 +34,34 @@ interface IFeatureRadioButtonProps {
   start: string;
   keyword: string;
   end: string;
+  zooQnsState: IZooFormResponse;
+  zooQnsDispatch: React.Dispatch<zooFormActionType>;
 }
 
+interface IattrIndex {
+  [key: string]: number;
+}
+
+const attrsIndex: IattrIndex = {
+  hair: 0,
+  feathers: 1,
+  eggs: 2,
+  milk: 3,
+  airborne: 4,
+  aquatic: 5,
+  predator: 6,
+  thooted: 7,
+  backbone: 8,
+  breath: 9,
+  venomous: 10,
+  fins: 11,
+  tail: 12,
+  domestic: 13,
+  catsize: 14,
+};
+
 function FeatureRadioButton(props: IFeatureRadioButtonProps) {
-  const { start, keyword, end } = props;
+  const { start, keyword, end, zooQnsDispatch } = props;
   const INIT_VALUE = "yes";
   const choices = ["yes", "no"];
   const [value, setValue] = useState<string>(INIT_VALUE);
@@ -42,6 +69,11 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.name);
+    zooQnsDispatch({
+      type: "toggle binary choice boolean",
+      payload: attrsIndex[event.target.name],
+    });
     setValue((event.target as HTMLInputElement).value);
   };
 

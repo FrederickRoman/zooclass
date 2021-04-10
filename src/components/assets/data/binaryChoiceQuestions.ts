@@ -14,7 +14,6 @@ const binaryChoiceQuestions: readonly IBinaryChoiceQuestion[] = [
   { start: "Is it ", keyword: "venomous", end: "?" },
   { start: "Does it have ", keyword: "fins", end: "?" },
   { start: "Does it have a ", keyword: "tail", end: "?" },
-  { start: "Does it have ", keyword: "hair", end: "?" },
   { start: "Is it ", keyword: "domestic", end: "?" },
   { start: "Is it ", keyword: "catsize", end: "?" },
 ];
