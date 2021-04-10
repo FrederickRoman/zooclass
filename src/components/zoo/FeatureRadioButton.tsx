@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -14,6 +14,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import zooFormActionType from "../../types/unions/zooFormActionType";
 import zooBinaryFeatureType from "../../types/unions/zooBinaryFeatureType";
+import zooYesNoAnsType from "../../types/unions/zooYesNoAnsType";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -43,18 +44,24 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   const { start, keyword, end, zooQnsDispatch } = props;
   const INIT_VALUE = "yes";
   const choices = ["yes", "no"];
-  const [value, setValue] = useState<string>(INIT_VALUE);
+  const [value, setValue] = useState<zooYesNoAnsType>(INIT_VALUE);
 
   const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.name);
-    zooQnsDispatch({
-      type: "toggle binary choice boolean",
-      payload: event.target.name as zooBinaryFeatureType,
-    });
-    setValue((event.target as HTMLInputElement).value);
+    setValue((event.target as HTMLInputElement).value as zooYesNoAnsType);
   };
+
+  useEffect(() => {
+    zooQnsDispatch({
+      type: "update binary choice",
+      payload: {
+        name: keyword as zooBinaryFeatureType,
+        value,
+      },
+    });
+  }, [value, keyword, zooQnsDispatch]);
 
   const FormQuestion = (): JSX.Element => (
     <div className={classes.text}>

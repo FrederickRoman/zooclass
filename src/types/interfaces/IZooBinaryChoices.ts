@@ -1,5 +1,7 @@
+import zooYesNoAnsType from "../unions/zooYesNoAnsType";
+
 interface IZooBinaryChoices {
-  [key: string]: boolean;
+  [key: string]: zooYesNoAnsType;
 }
 
 export default IZooBinaryChoices;
