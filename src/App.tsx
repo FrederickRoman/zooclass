@@ -3,7 +3,7 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import MenuBar from "./components/navigation/MenuBar";
-import ZooPanel from "./components/zoo/ZooPanel";
+import Home from "./pages/Home"
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <CssBaseline />
       <MenuBar />
       <Container>
-        <ZooPanel />
+        <Home />
       </Container>
     </>
   );
