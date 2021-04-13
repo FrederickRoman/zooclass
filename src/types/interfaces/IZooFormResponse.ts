@@ -1,7 +1,8 @@
 import IZooBinaryChoices from "./IZooBinaryChoices";
+import IZooMultipleChoices from "./IZooMultipleChoices";
 
 interface IZooFormResponse {
-  multipleChoice: number[];
+  multipleChoice: IZooMultipleChoices;
   binaryChoices: IZooBinaryChoices;
 }
 

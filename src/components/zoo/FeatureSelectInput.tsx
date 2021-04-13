@@ -7,6 +7,8 @@ import Select from "@material-ui/core/Select";
 
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import zooFormActionType from "../../types/unions/zooFormActionType";
+import zooLegsNumber from "../../types/unions/zooLegsNumber";
+import zooMultipleFeatureType from "../../types/unions/zooMultipleFeatureType";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,8 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IFeatureSelectInputProps {
   label: string;
-  values: number[];
-  defaultValue: number;
+  values: zooLegsNumber[];
+  defaultValue: zooLegsNumber;
   texts: string[];
   id: string;
   zooQnsState: IZooFormResponse;
@@ -43,21 +45,24 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
   } = props;
 
   const classes = useStyles();
-  const [selection, setSelection] = useState<number>(defaultValue);
+  const [selection, setSelection] = useState<zooLegsNumber>(defaultValue);
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelection((event.target as HTMLInputElement).value as zooLegsNumber);
+  };
 
   useEffect(() => {
     zooQnsDispatch({
       type: "update multiple choice number",
-      payload: selection,
+      payload: {
+        name: label as zooMultipleFeatureType,
+        value: selection as zooLegsNumber,
+      },
     });
-  }, [selection, zooQnsDispatch]);
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelection(event.target.value as number);
-  };
+  }, [selection, label, zooQnsDispatch]);
 
   const MenuItems: JSX.Element[] = values.map(
-    (v: number, i: number): JSX.Element => (
+    (v: zooLegsNumber, i: number): JSX.Element => (
       <MenuItem value={v} key={i}>
         {texts[i]}
       </MenuItem>

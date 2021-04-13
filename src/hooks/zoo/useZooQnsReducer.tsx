@@ -1,7 +1,12 @@
 import { useReducer } from "react";
 import IZooBinaryChoices from "../../types/interfaces/IZooBinaryChoices";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
+import IZooMultipleChoices from "../../types/interfaces/IZooMultipleChoices";
 import zooFormActionType from "../../types/unions/zooFormActionType";
+
+const multipleChoice: IZooMultipleChoices = {
+  legs: "4",
+};
 
 const binaryChoices: IZooBinaryChoices = {
   hair: "no",
@@ -23,22 +28,30 @@ const binaryChoices: IZooBinaryChoices = {
 
 function useZooQnsReducer() {
   const INIT_FORM_RESPONSE: IZooFormResponse = {
-    multipleChoice: [4],
+    multipleChoice,
     binaryChoices,
   };
 
   function reducer(state: IZooFormResponse, action: zooFormActionType) {
     switch (action.type) {
-      case "update multiple choice number":
-        return {
-          ...state,
-          multipleChoice: [action.payload],
-        };
-      case "update binary choice":
-        console.log(action.payload);
+      case "update multiple choice number": {
         const { name, value } = action.payload;
-        const updatedBinaryChoices = { ...state.binaryChoices, [name]: value };
+        console.log(action.payload);
+        const updatedMultipleChoices = {
+          ...state.multipleChoice,
+          [name]: value,
+        };
+        return { ...state, multipleChoice: updatedMultipleChoices };
+      }
+      case "update binary choice": {
+        const { name, value } = action.payload;
+        console.log(action.payload);
+        const updatedBinaryChoices = {
+          ...state.binaryChoices,
+          [name]: value,
+        };
         return { ...state, binaryChoices: updatedBinaryChoices };
+      }
       default:
         throw new Error();
     }

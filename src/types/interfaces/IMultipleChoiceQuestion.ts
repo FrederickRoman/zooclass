@@ -1,7 +1,9 @@
+import zooLegsNumber from "../unions/zooLegsNumber";
+
 interface IMultipleChoiceQuestion {
   label: string;
-  values: number[];
-  defaultValue: number;
+  values: zooLegsNumber[];
+  defaultValue: zooLegsNumber;
   texts: string[];
   id: string;
 }
