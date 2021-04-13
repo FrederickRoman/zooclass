@@ -1,4 +1,4 @@
-import IMultipleChoiceQuestion from "../../../types/interfaces/IMultipleChoiceQuestion";
+import IMultipleChoiceQuestion from "../../types/interfaces/IMultipleChoiceQuestion";
 
 const multipleChoiceQuestions: readonly IMultipleChoiceQuestion[] = [
   {
