@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import hero from "../../assets/img/hero.jpeg";
 
-import zcLogo from "../../assets/img/zcLogo.svg";
+import BannerTextSection from "./BannerTextSection";
 
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 function HeroBanner(): JSX.Element {
   const [offset, setOffset] = useState<number>(0);
@@ -16,19 +16,23 @@ function HeroBanner(): JSX.Element {
   }, []);
 
   return (
-    <div style={{ position: "relative", left: 0, top: 0 }}>
+    <Box position={"relative"} left={0} top={0} mt={10}>
       <section style={{ height: 400, overflow: "hidden" }}>
-        <img
-          src={hero}
-          alt="test"
-          height="800"
-          style={{
-            transform: `translateY(${offset * -0.5}px)`,
-            position: "relative",
-            top: 0,
-            left: 0,
-          }}
-        />
+        <Grid container justify={"center"} alignItems={"center"}>
+          <Grid item>
+            <img
+              src={hero}
+              alt="test"
+              height="800"
+              style={{
+                transform: `translateY(${offset * -0.5}px)`,
+                position: "relative",
+                top: 0,
+                left: 0,
+              }}
+            />
+          </Grid>
+        </Grid>
         <div
           style={{
             position: "absolute",
@@ -40,46 +44,10 @@ function HeroBanner(): JSX.Element {
             padding: 5,
           }}
         >
-          <Grid container justify={"center"} alignItems={"center"}>
-            <Grid item>
-              <Box px={1}>
-                <Grid container justify={"center"} alignItems={"center"}>
-                  <Grid item>
-                    <img
-                      src={zcLogo}
-                      alt="zooclass logo"
-                      width="40"
-                      height="40"
-                    />
-                  </Grid>
-                  <Grid item>
-                    <h1 style={{ color: "white" }}>ZooClass</h1>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid>
-
-            <Grid item>
-              <Box px={1}>
-                <Grid container justify={"center"} alignItems={"center"}>
-                  <Grid item>
-                    <h2
-                      style={{
-                        color: "white",
-                        textAlign: "center",
-                        verticalAlign: "middle",
-                      }}
-                    >
-                      AI-powered zoo animal classifier
-                    </h2>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid>
-          </Grid>
+          <BannerTextSection />
         </div>
       </section>
-    </div>
+    </Box>
   );
 }
 export default HeroBanner;
