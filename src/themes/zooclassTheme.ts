@@ -5,6 +5,9 @@ import brown from "@material-ui/core/colors/brown";
 
 const lettershiftTheme: Theme = createMuiTheme({
   palette: {
+    background: {
+      default: green[50]
+    },
     primary: {
       main: green[900],
     },
