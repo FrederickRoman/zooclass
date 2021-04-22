@@ -3,11 +3,11 @@ import Grid from "@material-ui/core/Grid";
 
 import FeatureRadioButton from "./FeatureRadioButton";
 
-import binaryChoiceQuestions from "../../assets/data/binaryChoiceQuestions";
-import IBinaryChoiceQuestion from "../../types/interfaces/IBinaryChoiceQuestion";
+import binaryChoiceQuestions from "../../../../assets/data/binaryChoiceQuestions";
+import IBinaryChoiceQuestion from "../../../../types/interfaces/IBinaryChoiceQuestion";
 
-import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
-import zooFormActionType from "../../types/unions/zooFormActionType";
+import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
+import zooFormActionType from "../../../../types/unions/zooFormActionType";
 
 interface IFBCLProps {
   zooQnsState: IZooFormResponse;

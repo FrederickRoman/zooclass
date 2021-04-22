@@ -1,10 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 
-import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
-import zooFormActionType from "../../types/unions/zooFormActionType";
+import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
+import zooFormActionType from "../../../../types/unions/zooFormActionType";
 
-import IMultipleChoiceQuestion from "../../types/interfaces/IMultipleChoiceQuestion";
-import multipleChoiceQuestions from "../../assets/data/multipleChoiceQuestions";
+import IMultipleChoiceQuestion from "../../../../types/interfaces/IMultipleChoiceQuestion";
+import multipleChoiceQuestions from "../../../../assets/data/multipleChoiceQuestions";
 
 import FeatureSelectInput from "./FeatureSelectInput";
 

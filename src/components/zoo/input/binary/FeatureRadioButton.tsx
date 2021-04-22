@@ -11,10 +11,10 @@ import Paper from "@material-ui/core/Paper";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
-import zooFormActionType from "../../types/unions/zooFormActionType";
-import zooBinaryFeatureType from "../../types/unions/zooBinaryFeatureType";
-import zooYesNoAnsType from "../../types/unions/zooYesNoAnsType";
+import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
+import zooFormActionType from "../../../../types/unions/zooFormActionType";
+import zooBinaryFeatureType from "../../../../types/unions/zooBinaryFeatureType";
+import zooYesNoAnsType from "../../../../types/unions/zooYesNoAnsType";
 
 const useStyles = makeStyles(() =>
   createStyles({

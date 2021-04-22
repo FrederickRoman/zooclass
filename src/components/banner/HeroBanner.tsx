@@ -43,18 +43,18 @@ function HeroBanner(): JSX.Element {
   }, []);
 
   const parallaxTransform = {
-    transform: `translateY(${offset * -0.5}px)`,
+    transform: `translateY(${offset * -0.5}px) scale(2)`,
   };
 
   return (
-    <Box position={"relative"} left={0} top={0} mt={10}>
+    <Box position={"relative"} left={0} top={0}>
       <section className={classes.heroBanner_viewContainer}>
         <Grid container justify={"center"} alignItems={"center"}>
           <Grid item>
             <img
               src={hero}
               alt="zoo background"
-              height="800"
+              height="400"
               className={classes.imageBackground_bottomLayer}
               style={{ ...parallaxTransform }}
             />
