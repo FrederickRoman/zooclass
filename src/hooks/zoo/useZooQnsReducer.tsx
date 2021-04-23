@@ -3,6 +3,7 @@ import IZooBinaryChoices from "../../types/interfaces/IZooBinaryChoices";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import IZooMultipleChoices from "../../types/interfaces/IZooMultipleChoices";
 import zooFormActionType from "../../types/unions/zooFormActionType";
+import zooQnsReducerPair from "../../types/unions/zooQnsReducerPair";
 
 const multipleChoice: IZooMultipleChoices = {
   legs: "4",
@@ -26,7 +27,7 @@ const binaryChoices: IZooBinaryChoices = {
   catsize: "no",
 };
 
-function useZooQnsReducer() {
+function useZooQnsReducer(): zooQnsReducerPair {
   const INIT_FORM_RESPONSE: IZooFormResponse = {
     multipleChoice,
     binaryChoices,

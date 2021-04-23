@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 
 import FeatureRadioButton from "./FeatureRadioButton";
 
-import binaryChoiceQuestions from "../../../../assets/data/binaryChoiceQuestions";
+import binaryChoiceQuestions from "../../../../assets/data/ts/binaryChoiceQuestions";
 import IBinaryChoiceQuestion from "../../../../types/interfaces/IBinaryChoiceQuestion";
 
 import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";

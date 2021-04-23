@@ -4,7 +4,7 @@ import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
 import zooFormActionType from "../../../../types/unions/zooFormActionType";
 
 import IMultipleChoiceQuestion from "../../../../types/interfaces/IMultipleChoiceQuestion";
-import multipleChoiceQuestions from "../../../../assets/data/multipleChoiceQuestions";
+import multipleChoiceQuestions from "../../../../assets/data/ts/multipleChoiceQuestions";
 
 import FeatureSelectInput from "./FeatureSelectInput";
 

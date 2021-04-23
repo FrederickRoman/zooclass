@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import useZooQnsReducer from "../hooks/zoo/useZooQnsReducer";
+import useZooClassifier from "../hooks/zoo/useZooClassifier";
 
 import ZooPanelSection from "../components/zoo/input/ZooPanelSection";
 
@@ -14,20 +15,21 @@ import Divider from "@material-ui/core/Divider";
 
 import zooClassType from "../types/unions/zooClassType";
 
-import ZooClassification from "../services/ZooClassification";
+import ZooClassification from "../services/ZooClassification.js";
+
+import zooData from "../assets/data/ts/zooData";
+import zooQnsReducerPair from "../types/unions/zooQnsReducerPair";
 
 function Home() {
   // const [zooClass, setZooClass] = useState<zooClass>(1);
 
-  const [zooQnsState, zooQnsDispatch] = useZooQnsReducer();
-  const [zooClass, setZooClass] = useState<zooClassType>(1);
+  console.log(zooData);
+
+  const [zooQnsState, zooQnsDispatch]: zooQnsReducerPair = useZooQnsReducer();
+  const zooClass = useZooClassifier({ zooQnsState });
 
   useEffect(() => {
-    if (zooQnsState) {
-      console.log(zooQnsState);
-      const classification = ZooClassification.classify(zooQnsState);
-      setZooClass(classification as zooClassType);
-    }
+    console.log(zooQnsState);
   }, [zooQnsState]);
 
   return (

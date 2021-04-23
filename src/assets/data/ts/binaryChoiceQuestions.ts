@@ -1,4 +1,4 @@
-import IBinaryChoiceQuestion from "../../types/interfaces/IBinaryChoiceQuestion";
+import IBinaryChoiceQuestion from "../../../types/interfaces/IBinaryChoiceQuestion";
 
 const binaryChoiceQuestions: readonly IBinaryChoiceQuestion[] = [
   { start: "Does it have ", keyword: "hair", end: "?" },
