@@ -10,6 +10,10 @@ import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 import IZooBinaryChoices from "../../types/interfaces/IZooBinaryChoices";
 import zooLegsNumber from "../../types/unions/zooLegsNumber";
 
+import zooNNmodel from "../../services/classification/zooNNmodel";
+
+import brain, { INeuralNetworkJSON, NeuralNetwork } from "brain.js/src/index";
+
 interface IuseZooClassProps {
   zooQnsState: IZooFormResponse;
 }
@@ -37,10 +41,120 @@ function useZooClass(props: IuseZooClassProps) {
     },
   };
   const [model, setModel] = useState(INIT_MODEL);
+
   const INIT_UNCLASSIFIED = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   const INIT_CLASS: zooClassType = 1;
   const [unclassfiedInput, setUnclassifiedInput] = useState(INIT_UNCLASSIFIED);
+  const [encodedInput, setEncodedInput] = useState<Number[] | null>(null);
+  const [netModel, setNetModel] = useState<NeuralNetwork | null>(null);
+  const [encodedOutput, setEncodedOutput] = useState<Number[] | null>(null);
   const [classOutput, setClassOutput] = useState<zooClassType>(INIT_CLASS);
+
+  const input = [
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+  ];
+
+  useEffect(() => {
+    const netModelJSON: INeuralNetworkJSON = zooNNmodel as INeuralNetworkJSON;
+    const net: NeuralNetwork = new NeuralNetwork();
+    net.fromJSON(netModelJSON);
+    setNetModel(net);
+    return () => setNetModel(null);
+  }, []);
+
+  useEffect(() => {
+    function encode(input: Number[]) {
+      const MAX_NUM_OF_LEGS = 8;
+      const hotEncodeLegsNum = (label: legsNumber): Number[] => {
+        const zeroPad = Array(MAX_NUM_OF_LEGS).fill(0);
+        zeroPad[label] = 1;
+        return zeroPad;
+      };
+      const encodedInput: Number[] = input
+        .map((f, i) => (i === 12 ? hotEncodeLegsNum(f as legsNumber) : f))
+        .flat();
+      return encodedInput;
+    }
+
+    if (unclassfiedInput) {
+      const encodedInput = encode(unclassfiedInput);
+      setEncodedInput(encodedInput);
+    }
+  }, [unclassfiedInput]);
+
+  useEffect(() => {
+    if (netModel && encodedInput) {
+      console.time("inference time");
+      const encodedOutput: Number[] = netModel.run(encodedInput);
+      setEncodedOutput(encodedOutput);
+      console.log("net run input: ", encodedOutput);
+      console.timeEnd("inference time");
+    }
+  }, [encodedInput]);
+
+  interface IMaxVal {
+    max: number;
+    index: number;
+  }
+
+  useEffect(() => {
+    console.log("encodedOutput", encodedOutput);
+    if (encodedOutput !== null) {
+      console.log("encodedOutput is not null");
+      let max: number = 0;
+      let indexOfMax: number = -1;
+      console.log("encodedOutput.length", encodedOutput.length);
+      const NUM_OF_CLASSES = 7;
+      for (let index = 0; index < NUM_OF_CLASSES; index++) {
+        console.log("I am in the loop");
+        const cur = encodedOutput[index] as number;
+        console.log("cur", cur);
+        if (cur > max) {
+          console.log("max", max);
+          max = cur;
+          indexOfMax = index;
+        }
+      }
+      if (0 <= indexOfMax && indexOfMax <= 6) {
+        const classOutput: zooClassType = (indexOfMax + 1) as zooClassType;
+
+        console.log(classOutput);
+        setClassOutput(classOutput);
+      }
+    }
+  }, [encodedOutput]);
+
+  useEffect(() => {
+    if (netModel) {
+      console.time("inference time");
+      const output = netModel.run(input);
+      console.log("net run input: ", output);
+      console.timeEnd("inference time");
+    }
+  }, [unclassfiedInput]);
 
   useEffect(() => {
     const train_dataset: number[][] = [];
@@ -60,11 +174,11 @@ function useZooClass(props: IuseZooClassProps) {
       .map((p: number, i: number) => (p === train_labels[i] ? 0 : 1))
       .reduce((acc: number, cur: number) => acc + cur);
     const perceError = errors / train_labels.length;
-    console.log('errors', errors);
-    console.log('num of samples', train_labels.length);
-    console.log('perceError', perceError);
+    console.log("errors", errors);
+    console.log("num of samples", train_labels.length);
+    console.log("perceError", perceError);
     ////
-    
+
     setModel(knn);
   }, []);
 
@@ -134,13 +248,13 @@ function useZooClass(props: IuseZooClassProps) {
     setUnclassifiedInput(unclassified);
   }, [zooQnsState]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log(model);
     if (model.trained) {
       const classOutput = model.predict(unclassfiedInput) as zooClassType;
       setClassOutput(classOutput);
     }
-  }, [unclassfiedInput]);
+  }, [unclassfiedInput]); */
 
   // const zooClassification = (Math.floor(Math.random() * 7) + 1) as zooClassType;
   console.log(classOutput);
