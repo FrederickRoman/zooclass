@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -60,7 +61,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
         },
       });
     }
-  }, [value, keyword]);
+  }, [value, keyword, zooQnsDispatch]);
 
   const FormQuestion = (): JSX.Element => (
     <div className={classes.text}>

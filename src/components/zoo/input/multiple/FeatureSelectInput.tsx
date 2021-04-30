@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -52,7 +54,7 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
         },
       });
     }
-  }, [selection, label]);
+  }, [selection, label, zooQnsDispatch]);
 
   const toMenuItemMapper = (v: zooLegsNumber, i: number): JSX.Element => (
     <MenuItem value={v} key={i}>
