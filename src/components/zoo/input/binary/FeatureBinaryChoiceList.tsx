@@ -1,25 +1,23 @@
 import Grid from "@material-ui/core/Grid";
-// import Container from "@material-ui/core/Container";
 
 import FeatureRadioButton from "./FeatureRadioButton";
 
 import binaryChoiceQuestions from "../../../../assets/data/ts/binaryChoiceQuestions";
 import IBinaryChoiceQuestion from "../../../../types/interfaces/IBinaryChoiceQuestion";
 
-import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
-import zooFormActionType from "../../../../types/unions/zooFormActionType";
-
-interface IFBCLProps {
-  zooQnsState: IZooFormResponse;
-  zooQnsDispatch: React.Dispatch<zooFormActionType>;
+function FeatureRadioButtons(): JSX.Element {
+  return (
+    <>
+      {binaryChoiceQuestions.map(
+        (question: IBinaryChoiceQuestion, i: number): JSX.Element => (
+          <FeatureRadioButton {...question} key={i} />
+        )
+      )}
+    </>
+  );
 }
 
-function FeatureBinaryChoiceList(props: IFBCLProps): JSX.Element {
-  const FeatureRadioButtons = binaryChoiceQuestions.map(
-    (question: IBinaryChoiceQuestion, i: number): JSX.Element => (
-      <FeatureRadioButton {...question} {...props} key={i} />
-    )
-  );
+function FeatureBinaryChoiceList(): JSX.Element {
   return (
     <Grid container justify={"center"} alignItems={"center"}>
       <Grid
@@ -28,15 +26,8 @@ function FeatureBinaryChoiceList(props: IFBCLProps): JSX.Element {
         justify={"space-around"}
         alignItems={"center"}
         wrap={"wrap"}
-
-        // style={{
-        //   display: "flex",
-        //   flexWrap: "wrap",
-        //   justifyContent: "space-around",
-        //   alignItems: "center",
-        // }}
       >
-        {FeatureRadioButtons}
+        <FeatureRadioButtons />
       </Grid>
     </Grid>
   );

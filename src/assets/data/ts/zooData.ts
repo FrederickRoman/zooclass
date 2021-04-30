@@ -122,21 +122,21 @@ const animalSplit = Object.entries(zooData).map(([k, v]) => {
   };
 });
 
-console.log("animalSplit");
-console.log(animalSplit);
+// console.log("animalSplit");
+// console.log(animalSplit);
 
 const zooClassTrainData = animalSplit.map((a) => [a.features, a.label]);
 const zooClassFeatures = zooClassTrainData.map((z) => z[0]);
 const zooClassLabels = zooClassTrainData.map((z) => z[1]).flat();
 
-console.log("zooClassTrainData");
-console.log(zooClassTrainData);
+// console.log("zooClassTrainData");
+// console.log(zooClassTrainData);
 
-console.log("zooClassFeatures");
-console.log(zooClassFeatures);
+// console.log("zooClassFeatures");
+// console.log(zooClassFeatures);
 
-console.log("zooClassLabels");
-console.log(zooClassLabels);
+// console.log("zooClassLabels");
+// console.log(zooClassLabels);
 
 
 const train_dataset = zooClassFeatures;
@@ -148,6 +148,6 @@ const test_dataset = train_dataset.slice(0, 6);
 
 const ans = knn.predict(test_dataset);
 
-console.log(ans);
+// console.log(ans);
 
 export default zooData;

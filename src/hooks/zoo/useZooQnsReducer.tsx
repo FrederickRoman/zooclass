@@ -37,7 +37,7 @@ function useZooQnsReducer(): zooQnsReducerPair {
     switch (action.type) {
       case "update multiple choice number": {
         const { name, value } = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
         const updatedMultipleChoices = {
           ...state.multipleChoice,
           [name]: value,
@@ -46,7 +46,7 @@ function useZooQnsReducer(): zooQnsReducerPair {
       }
       case "update binary choice": {
         const { name, value } = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
         const updatedBinaryChoices = {
           ...state.binaryChoices,
           [name]: value,

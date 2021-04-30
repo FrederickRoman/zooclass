@@ -20,11 +20,9 @@ import ZooClassification from "../services/ZooClassification.js";
 import zooData from "../assets/data/ts/zooData";
 import zooQnsReducerPair from "../types/unions/zooQnsReducerPair";
 
+import { ZooFormContextProvider } from "../contexts/ZooFormContext";
+
 function Home() {
-  // const [zooClass, setZooClass] = useState<zooClass>(1);
-
-  console.log(zooData);
-
   const [zooQnsState, zooQnsDispatch]: zooQnsReducerPair = useZooQnsReducer();
   const zooClass = useZooClassifier({ zooQnsState });
 
@@ -38,10 +36,9 @@ function Home() {
       <Divider />
       <ZooResultsSection zooClass={zooClass} />
       <Divider />
-      <ZooPanelSection
-        zooQnsState={zooQnsState}
-        zooQnsDispatch={zooQnsDispatch}
-      />
+      <ZooFormContextProvider value={[zooQnsState, zooQnsDispatch]}>
+        <ZooPanelSection />
+      </ZooFormContextProvider>
     </Container>
   );
 }

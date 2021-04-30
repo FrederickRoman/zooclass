@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -11,19 +11,15 @@ import Paper from "@material-ui/core/Paper";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-import IZooFormResponse from "../../../../types/interfaces/IZooFormResponse";
-import zooFormActionType from "../../../../types/unions/zooFormActionType";
 import zooBinaryFeatureType from "../../../../types/unions/zooBinaryFeatureType";
 import zooYesNoAnsType from "../../../../types/unions/zooYesNoAnsType";
+
+import ZooFormContext from "../../../../contexts/ZooFormContext";
 
 const useStyles = makeStyles(() =>
   createStyles({
     form_container: {
       display: "inline-block",
-    },
-    radio_group: {
-      // display: "grid",
-      // gridTemplateColumns: "repeat(2, auto)",
     },
     text: {
       heigh: "auto",
@@ -36,32 +32,35 @@ interface IFeatureRadioButtonProps {
   start: string;
   keyword: string;
   end: string;
-  zooQnsState: IZooFormResponse;
-  zooQnsDispatch: React.Dispatch<zooFormActionType>;
 }
 
 function FeatureRadioButton(props: IFeatureRadioButtonProps) {
-  const { start, keyword, end, zooQnsDispatch } = props;
-  const INIT_VALUE = "yes";
+  const { start, keyword, end } = props;
+  const INIT_VALUE = "no";
   const choices = ["yes", "no"];
   const [value, setValue] = useState<zooYesNoAnsType>(INIT_VALUE);
 
   const classes = useStyles();
 
+  const ZooForm = useContext(ZooFormContext);
+  const zooQnsDispatch = (ZooForm && ZooForm[1]) ?? null;
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.name);
+    // console.log(event.target.name);
     setValue((event.target as HTMLInputElement).value as zooYesNoAnsType);
   };
 
   useEffect(() => {
-    zooQnsDispatch({
-      type: "update binary choice",
-      payload: {
-        name: keyword as zooBinaryFeatureType,
-        value,
-      },
-    });
-  }, [value, keyword, zooQnsDispatch]);
+    if (zooQnsDispatch) {
+      zooQnsDispatch({
+        type: "update binary choice",
+        payload: {
+          name: keyword as zooBinaryFeatureType,
+          value,
+        },
+      });
+    }
+  }, [value, keyword]);
 
   const FormQuestion = (): JSX.Element => (
     <div className={classes.text}>
@@ -123,7 +122,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
     <Box m={1}>
       <Paper elevation={3} className={classes.form_container}>
         <Box p={2}>
-          <FormControl component="fieldset" className={classes.radio_group}>
+          <FormControl component="fieldset">
             <Grid container justify={"space-between"} alignItems={"center"}>
               <FormQuestionSection />
               <FormChoicesSection />
