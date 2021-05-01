@@ -1,11 +1,13 @@
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
+
 type binaryDigit = 0 | 1;
 interface IBinaryObj {
   [key: string]: binaryDigit;
 }
 type legsNumber = 0 | 2 | 4 | 5 | 6 | 8;
-const NNclassification = {
-  preprocessUnclassified(zooQnsState: IZooFormResponse) {
+
+const DataProcessing = {
+  preprocessUnclassified(zooQnsState: IZooFormResponse): number[] {
     // console.log(zooQnsState);
     const binaryChoices: IBinaryObj = {
       hair: 1,
@@ -65,19 +67,19 @@ const NNclassification = {
     ];
     return unclassified;
   },
-  encode(input: Number[]) {
+  encode(input: number[]): number[] {
     const MAX_NUM_OF_LEGS = 8;
-    const hotEncodeLegsNum = (label: legsNumber): Number[] => {
+    const hotEncodeLegsNum = (label: legsNumber): number[] => {
       const zeroPad = Array(MAX_NUM_OF_LEGS).fill(0);
       zeroPad[label] = 1;
       return zeroPad;
     };
-    const encodedInput: Number[] = input
+    const encodedInput: number[] = input
       .map((f, i) => (i === 12 ? hotEncodeLegsNum(f as legsNumber) : f))
       .flat();
     return encodedInput;
   },
-  decode(encodedOutput: Number[]) {
+  decode(encodedOutput: number[]): number {
     let max: number = 0;
     let indexOfMax: number = -1;
     const NUM_OF_CLASSES = 7;
@@ -92,4 +94,4 @@ const NNclassification = {
   },
 };
 
-export default NNclassification;
+export default DataProcessing;

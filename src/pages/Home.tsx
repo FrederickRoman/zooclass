@@ -15,17 +15,18 @@ import { ZooFormContextProvider } from "../contexts/ZooFormContext";
 
 function Home() {
   const [zooQnsState, zooQnsDispatch]: zooQnsReducerPair = useZooQnsReducer();
-  const zooClass = useZooClassifier({ zooQnsState });
+  const { classOutput, encodedOutput } = useZooClassifier(zooQnsState);
 
   useEffect(() => {
-    console.log(zooQnsState);
-  }, [zooQnsState]);
+    console.log(encodedOutput);
+  }, [encodedOutput]);
 
   return (
     <Container disableGutters>
       <HeroBanner />
       <Divider />
-      <ZooResultsSection zooClass={zooClass} />
+      <div>{`${classOutput}`}</div>
+      <ZooResultsSection probClass={encodedOutput} />
       <Divider />
       <ZooFormContextProvider value={[zooQnsState, zooQnsDispatch]}>
         <ZooPanelSection />
