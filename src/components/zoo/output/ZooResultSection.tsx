@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 
+import Box from "@material-ui/core/Box";
+
 interface IProps {
   probClass: number[];
 }
@@ -12,22 +14,21 @@ function ZooResultsSection(props: IProps): JSX.Element {
   const serializedprobClass = JSON.stringify(probClass);
 
   useEffect(() => {
-    const probData: number[] = Object.values(probClass).map((p) => 100 * p);
+    const probNums: number[] = Object.values(probClass);
+    const probSum: number = probNums.reduce((acc, cur) => acc + cur);
+    const probData: number[] = probNums.map((p) => 100 * (p / probSum));
     setData(probData.length === 7 ? probData : [0, 0, 0, 0, 0, 0, 0]);
   }, [serializedprobClass, probClass]);
 
-  console.log("data", data);
-
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: 60,
-        zIndex: 1100,
-        background: "white",
-        boxShadow:
-          "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
-      }}
+    <Box
+      position="sticky"
+      top={60}
+      zIndex="appBar"
+      bgcolor="white"
+      boxShadow={3}
+      border={1}
+      m={1}
     >
       <Bar
         type={Bar}
@@ -43,7 +44,6 @@ function ZooResultsSection(props: IProps): JSX.Element {
           ],
           datasets: [
             {
-              label: "Classification Probability %",
               backgroundColor: "rgba(75,192,192,1)",
               borderColor: "rgba(0,0,0,1)",
               borderWidth: 2,
@@ -52,19 +52,28 @@ function ZooResultsSection(props: IProps): JSX.Element {
           ],
         }}
         options={{
-          // title: {
-          //   display: true,
-          //   text: "Average Rainfall per month",
-          //   fontSize: 20,
-          // },
-          legend: {
-            display: true,
-            position: "right",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            title: {
+              display: true,
+              text: "Animal prediction (probablity %)",
+              font: "2em",
+              padding: {
+                top: 10,
+                bottom: 30,
+              },
+            },
           },
-       
+          animation: {
+            duration: 100,
+          },
         }}
       />
-    </div>
+    </Box>
   );
 }
 
