@@ -4,6 +4,7 @@ import useZooQnsReducer from "../hooks/zoo/useZooQnsReducer";
 import useZooClassifier from "../hooks/zoo/useZooClassifier";
 
 import HeroBanner from "../components/banner/HeroBanner";
+import ZooInstructionsSection from "../components/content/ZooInstructionsSection";
 import ZooResultsSection from "../components/zoo/output/ZooResultSection";
 import ZooPanelSection from "../components/zoo/input/ZooPanelSection";
 
@@ -13,7 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import zooQnsReducerPair from "../types/unions/zooQnsReducerPair";
 import { ZooFormContextProvider } from "../contexts/ZooFormContext";
 
-function Home() {
+function Home(): JSX.Element {
   const [zooQnsState, zooQnsDispatch]: zooQnsReducerPair = useZooQnsReducer();
   const { classOutput, encodedOutput } = useZooClassifier(zooQnsState);
 
@@ -25,8 +26,9 @@ function Home() {
     <Container disableGutters>
       <HeroBanner />
       <Divider />
-      <div>{`${classOutput}`}</div>
-      <ZooResultsSection probClass={encodedOutput} />
+      <ZooInstructionsSection />
+      <Divider />
+      <ZooResultsSection classOutput={classOutput} probClass={encodedOutput} />
       <Divider />
       <ZooFormContextProvider value={[zooQnsState, zooQnsDispatch]}>
         <ZooPanelSection />

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     heroBanner_viewContainer: {
       height: 400,
-      overflow: "hidden",
+      overflow: "hidden"
     },
     imageBackground_bottomLayer: {
       position: "relative",
@@ -49,7 +49,12 @@ function HeroBanner(): JSX.Element {
   return (
     <Box position={"relative"} left={0} top={0}>
       <section className={classes.heroBanner_viewContainer}>
-        <Grid container justify={"center"} alignItems={"center"}>
+        <Grid
+          container
+          justify={"center"}
+          alignItems={"center"}
+          style={{ background: "black" }}
+        >
           <Grid item>
             <img
               src={hero}

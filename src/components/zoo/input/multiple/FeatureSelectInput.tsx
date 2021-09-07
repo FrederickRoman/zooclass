@@ -2,6 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
+
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -14,13 +18,16 @@ import ZooFormContext from "../../../../contexts/ZooFormContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    button: {
-      display: "block",
-      marginTop: theme.spacing(2),
+    container: {
+      background: "white",
     },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
+    },
+    button: {
+      display: "block",
+      marginTop: theme.spacing(2),
     },
   })
 );
@@ -63,14 +70,23 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
   );
 
   return (
-    <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id={id}>{label}</InputLabel>
-        <Select labelId={id} id={id} value={selection} onChange={handleChange}>
-          {values.map(toMenuItemMapper)}
-        </Select>
-      </FormControl>
-    </div>
+    <Box m={1} className={classes.container}>
+      <Grid container justify={"space-between"} alignItems={"center"}>
+        <Grid item>
+          <FormControl className={classes.formControl}>
+            <InputLabel id={`legNum_${id}}`}>{label}</InputLabel>
+            <Select
+              labelId={id}
+              id={id}
+              value={selection}
+              onChange={handleChange}
+            >
+              {values.map(toMenuItemMapper)}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
