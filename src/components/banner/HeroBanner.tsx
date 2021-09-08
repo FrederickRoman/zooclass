@@ -19,13 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
       top: 0,
       left: 0,
+      width: "100vw"
     },
     textSection_topLayer: {
       position: "absolute",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      background: "rgba(1, 1, 1, 0.3)",
+      background: "rgba(1, 1, 1, 0.5)",
       maxWidth: 500,
       padding: 5,
     },
@@ -43,7 +44,7 @@ function HeroBanner(): JSX.Element {
   }, []);
 
   const parallaxTransform = {
-    transform: `translateY(${offset * -0.5}px) scale(2)`,
+    transform: `translateY(${offset * -0.5}px) scaleY(2)`,
   };
 
   return (

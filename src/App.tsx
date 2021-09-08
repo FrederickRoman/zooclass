@@ -1,18 +1,15 @@
-import { ThemeProvider } from "@material-ui/core/styles";
-import zooclassTheme from "./themes/zooclassTheme";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import MenuBar from "./components/navigation/MenuBar";
-import Home from "./pages/Home";
+import RouteSwitch from "./RouteSwitch";
+import MainFooter from "./components/footer/MainFooter";
 
-function App() {
+function App(): JSX.Element {
   return (
-    <ThemeProvider theme={zooclassTheme}>
-      <CssBaseline />
+    <Router>
       <MenuBar />
-      <Home />
-    </ThemeProvider>
+      <RouteSwitch />
+      <MainFooter />
+    </Router>
   );
 }
 
