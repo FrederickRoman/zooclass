@@ -8,8 +8,8 @@ import ZooInstructionsSection from "../components/content/ZooInstructionsSection
 import ZooResultsSection from "../components/zoo/output/ZooResultSection";
 import ZooPanelSection from "../components/zoo/input/ZooPanelSection";
 
-import Container from "@material-ui/core/Container";
-import Divider from "@material-ui/core/Divider";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
 
 import zooQnsReducerPair from "../types/unions/zooQnsReducerPair";
 import { ZooFormContextProvider } from "../contexts/ZooFormContext";

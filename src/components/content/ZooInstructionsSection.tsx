@@ -1,8 +1,11 @@
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
 
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,7 +25,7 @@ function ZooInstructionsSection(): JSX.Element {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
-      <Grid container justify={"center"} alignItems={"center"}>
+      <Grid container justifyContent={"center"} alignItems={"center"}>
         <Grid item>
           <Typography
             variant={"h1"}

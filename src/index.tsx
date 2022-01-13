@@ -2,15 +2,29 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import {
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+} from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import zooclassTheme from "./themes/zooclassTheme";
+import React from "react";
+
+declare module "@mui/styles/defaultTheme" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 ReactDOM.render(
-  <ThemeProvider theme={zooclassTheme}>
-    <CssBaseline />
-    <App />
-  </ThemeProvider>,
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={zooclassTheme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </StyledEngineProvider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

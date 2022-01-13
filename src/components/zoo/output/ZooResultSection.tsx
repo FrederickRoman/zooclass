@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import zooClassType from "../../../types/unions/zooClassType";
 
@@ -70,62 +71,60 @@ function ZooResultsSection(props: IProps): JSX.Element {
     if (didInputChange(probClassVals)) updateChartData(probClassVals);
   }, [probClass]);
 
-  return (
-    <>
-      <Box position="sticky" top={0} zIndex="appBar" bgcolor="#1b5e20">
-        <Grid container justify={"center"} alignItems={"center"}>
-          <Grid item>
-            <Box>
-              <Typography
-                align={"center"}
-                variant={"h2"}
-                className={classes.typography_title}
-              >
-                {`${mostLikelyLabel} (~${confidence}% Confident)`}
-              </Typography>
-            </Box>
-          </Grid>
+  return <>
+    <Box position="sticky" top={0} zIndex="appBar" bgcolor="#1b5e20">
+      <Grid container justifyContent={"center"} alignItems={"center"}>
+        <Grid item>
+          <Box>
+            <Typography
+              align={"center"}
+              variant={"h2"}
+              className={classes.typography_title}
+            >
+              {`${mostLikelyLabel} (~${confidence}% Confident)`}
+            </Typography>
+          </Box>
         </Grid>
-      </Box>
-      <Box
-        position="sticky"
-        top={40}
-        height={"40vh"}
-        zIndex="appBar"
-        bgcolor="white"
-        boxShadow={3}
-        border={1}
-        m={1}
-      >
-        <Bar
-          type={Bar}
-          data={{
-            labels: LABELS,
-            datasets: [
-              {
-                backgroundColor: "rgba(27, 94, 32, 0.7)",
-                borderColor: "rgba(0,0,0,1)",
-                borderWidth: 2,
-                data: chartData,
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                display: false,
-              },
+      </Grid>
+    </Box>
+    <Box
+      position="sticky"
+      top={40}
+      height={"40vh"}
+      zIndex="appBar"
+      bgcolor="white"
+      boxShadow={3}
+      border={1}
+      m={1}
+    >
+      <Bar
+        type={Bar}
+        data={{
+          labels: LABELS,
+          datasets: [
+            {
+              backgroundColor: "rgba(27, 94, 32, 0.7)",
+              borderColor: "rgba(0,0,0,1)",
+              borderWidth: 2,
+              data: chartData,
             },
-            animation: {
-              duration: 100,
+          ],
+        }}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
             },
-          }}
-        />
-      </Box>
-    </>
-  );
+          },
+          animation: {
+            duration: 100,
+          },
+        }}
+      />
+    </Box>
+  </>;
 }
 
 export default ZooResultsSection;

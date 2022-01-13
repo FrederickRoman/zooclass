@@ -1,5 +1,6 @@
-import Link from "@material-ui/core/Link";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Link from "@mui/material/Link";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import { ReactNode } from "react";
 
 const useStyles = makeStyles(() =>

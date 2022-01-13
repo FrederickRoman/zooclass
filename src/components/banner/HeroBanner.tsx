@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
+
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import hero from "../../assets/img/hero.jpeg";
 
 import BannerTextSection from "./BannerTextSection";
 
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,7 +55,7 @@ function HeroBanner(): JSX.Element {
       <section className={classes.heroBanner_viewContainer}>
         <Grid
           container
-          justify={"center"}
+          justifyContent={"center"}
           alignItems={"center"}
           style={{ background: "black" }}
         >

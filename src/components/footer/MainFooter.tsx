@@ -1,7 +1,7 @@
-import AppBar from "@material-ui/core/AppBar";
-import Grid from "@material-ui/core/Grid";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import AppBar from "@mui/material/AppBar";
+import Grid from "@mui/material/Grid";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import ExtLink from "../link/ExtLink";
 
 function CopyrightMsg(): JSX.Element {
@@ -18,7 +18,7 @@ function MainFooter(): JSX.Element {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Grid container justify={"center"} alignItems={"center"}>
+        <Grid container justifyContent={"center"} alignItems={"center"}>
           <Grid item>
             <CopyrightMsg />
           </Grid>

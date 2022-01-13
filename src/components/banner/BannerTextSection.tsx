@@ -1,14 +1,14 @@
 import zcLogo from "../../assets/img/zcLogo.svg";
 
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 function BannerTextSection(): JSX.Element {
   return (
-    <Grid container justify={"center"} alignItems={"center"}>
+    <Grid container justifyContent={"center"} alignItems={"center"}>
       <Grid item>
         <Box px={1}>
-          <Grid container justify={"center"} alignItems={"center"}>
+          <Grid container justifyContent={"center"} alignItems={"center"}>
             <Grid item>
               <img src={zcLogo} alt="zooclass logo" width="40" height="40" />
             </Grid>
@@ -21,7 +21,7 @@ function BannerTextSection(): JSX.Element {
 
       <Grid item>
         <Box px={1}>
-          <Grid container justify={"center"} alignItems={"center"}>
+          <Grid container justifyContent={"center"} alignItems={"center"}>
             <Grid item>
               <h2
                 style={{

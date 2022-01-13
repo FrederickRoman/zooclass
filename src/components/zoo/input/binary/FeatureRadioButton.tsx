@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 import zooBinaryFeatureType from "../../../../types/unions/zooBinaryFeatureType";
 import zooYesNoAnsType from "../../../../types/unions/zooYesNoAnsType";
@@ -72,7 +73,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   );
 
   const FormQuestionSection = (): JSX.Element => (
-    <Grid item container justify={"center"} alignItems={"center"} xs={5}>
+    <Grid item container justifyContent={"center"} alignItems={"center"} xs={5}>
       <Grid item>
         <FormLabel component="legend">
           <FormQuestion />
@@ -97,7 +98,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
     return (
       <Grid
         container
-        justify={"space-between"}
+        justifyContent={"space-between"}
         alignItems={"center"}
         wrap={"wrap"}
       >
@@ -124,7 +125,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
       <Paper elevation={3} className={classes.form_container}>
         <Box p={2}>
           <FormControl component="fieldset">
-            <Grid container justify={"space-between"} alignItems={"center"}>
+            <Grid container justifyContent={"space-between"} alignItems={"center"}>
               <FormQuestionSection />
               <FormChoicesSection />
             </Grid>

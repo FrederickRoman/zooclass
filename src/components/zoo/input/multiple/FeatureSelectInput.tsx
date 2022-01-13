@@ -1,20 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
 
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
+import createStyles from "@mui/styles/createStyles";
+import makeStyles from "@mui/styles/makeStyles";
 
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import zooLegsNumber from "../../../../types/unions/zooLegsNumber";
 import zooMultipleFeatureType from "../../../../types/unions/zooMultipleFeatureType";
 
 import ZooFormContext from "../../../../contexts/ZooFormContext";
+
+type HandleChange = (
+  event: SelectChangeEvent<zooLegsNumber>,
+  child: React.ReactNode
+) => void;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,7 +55,7 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
   const zooQnsDispatch = (ZooForm && ZooForm[1]) ?? null;
   const classes = useStyles();
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange: HandleChange = (event) => {
     setSelection((event.target as HTMLInputElement).value as zooLegsNumber);
   };
 
@@ -71,7 +79,7 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
 
   return (
     <Box m={1} className={classes.container}>
-      <Grid container justify={"space-between"} alignItems={"center"}>
+      <Grid container justifyContent={"space-between"} alignItems={"center"}>
         <Grid item>
           <FormControl className={classes.formControl}>
             <InputLabel id={`legNum_${id}}`}>{label}</InputLabel>

@@ -1,9 +1,8 @@
-import { createMuiTheme, Theme } from "@material-ui/core/styles";
+import { createTheme, Theme, adaptV4Theme } from "@mui/material/styles";
 
-import green from "@material-ui/core/colors/green";
-import brown from "@material-ui/core/colors/brown";
+import { green, brown } from '@mui/material/colors';
 
-const lettershiftTheme: Theme = createMuiTheme({
+const lettershiftTheme: Theme = createTheme(adaptV4Theme({
   palette: {
     background: {
       default: green[50]
@@ -15,6 +14,6 @@ const lettershiftTheme: Theme = createMuiTheme({
       main: brown[300],
     },
   },
-});
+}));
 
 export default lettershiftTheme;
