@@ -1,7 +1,3 @@
-// There is no @types/ml-knn available yet
-//@ts-ignore
-// import KNN from "ml-knn";
-
 type vals = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 interface IzooData {
@@ -34,7 +30,7 @@ const zooData: IzooData = {
   elephant: [1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 4, 1, 0, 1, 1],
   flamingo: [0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 2, 1, 0, 1, 2],
   flea: [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 6, 0, 0, 0, 6],
-  //   frog: [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 4, 0, 0, 0, 5],
+  //   frog: [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 4, 0, 0, 0, 5], // remove repeated
   frog: [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 4, 0, 0, 0, 5],
   fruitbat: [1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 2, 1, 0, 0, 1],
   giraffe: [1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 4, 1, 0, 1, 1],
@@ -111,43 +107,5 @@ const zooData: IzooData = {
   worm: [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 7],
   wren: [0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 2, 1, 0, 0, 2],
 };
-
-/* const animalSplit = Object.entries(zooData).map(([k, v]) => {
-  const features = v.slice(0, -1);
-  const label = v.slice(-1);
-  return {
-    animal: k,
-    features: features,
-    label: label,
-  };
-}); */
-
-// console.log("animalSplit");
-// console.log(animalSplit);
-
-/* const zooClassTrainData = animalSplit.map((a) => [a.features, a.label]);
-const zooClassFeatures = zooClassTrainData.map((z) => z[0]);
-const zooClassLabels = zooClassTrainData.map((z) => z[1]).flat();
- */
-// console.log("zooClassTrainData");
-// console.log(zooClassTrainData);
-
-// console.log("zooClassFeatures");
-// console.log(zooClassFeatures);
-
-// console.log("zooClassLabels");
-// console.log(zooClassLabels);
-
-
-/* const train_dataset = zooClassFeatures;
-const train_labels = zooClassLabels;
-
-const knn = new KNN(train_dataset, train_labels, { k: 5 }); 
-
-const test_dataset = train_dataset.slice(0, 6);
-
-const ans = knn.predict(test_dataset); */
-
-// console.log(ans);
 
 export default zooData;
