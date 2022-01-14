@@ -6,9 +6,8 @@ interface IBinaryObj {
 }
 type legsNumber = 0 | 2 | 4 | 5 | 6 | 8;
 
-const DataProcessing = {
-  preprocessUnclassified(zooQnsState: IZooFormResponse): number[] {
-    // console.log(zooQnsState);
+class DataProcessing {
+  static preprocessUnclassified(zooQnsState: IZooFormResponse): number[] {
     const binaryChoices: IBinaryObj = {
       hair: 1,
       feathers: 1,
@@ -66,8 +65,8 @@ const DataProcessing = {
       catsize,
     ];
     return unclassified;
-  },
-  encode(input: number[]): number[] {
+  }
+  static encode(input: number[]): number[] {
     const MAX_NUM_OF_LEGS = 8;
     const hotEncodeLegsNum = (label: legsNumber): number[] => {
       const zeroPad = Array(MAX_NUM_OF_LEGS).fill(0);
@@ -78,8 +77,8 @@ const DataProcessing = {
       .map((f, i) => (i === 12 ? hotEncodeLegsNum(f as legsNumber) : f))
       .flat();
     return encodedInput;
-  },
-  decode(encodedOutput: number[]): number {
+  }
+  static decode(encodedOutput: number[]): number {
     let max: number = 0;
     let indexOfMax: number = -1;
     const NUM_OF_CLASSES = 7;
@@ -91,7 +90,7 @@ const DataProcessing = {
       }
     }
     return indexOfMax ?? -1;
-  },
-};
+  }
+}
 
 export default DataProcessing;
