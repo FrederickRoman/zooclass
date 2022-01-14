@@ -1,41 +1,27 @@
-import { Link } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import {
+  AppBar,
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-
 import zcLogo from "../../assets/img/zcLogo.svg";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    link: {
-      color: "white",
-      textDecoration: "none",
-    },
-    title: {
-      color: "white",
-    },
-  })
-);
+import { Link } from "react-router-dom";
 
 function HomeLink(): JSX.Element {
-  const classes = useStyles();
   return (
     <Box>
-      <Link to="/" className={classes.link} aria-label="home">
+      <Link to="/" aria-label="home" style={{ textDecoration: "none" }}>
         <Button>
-          <Grid container justifyContent={"center"} alignItems={"center"}>
+          <Grid container justifyContent="center" alignItems="center">
             <Grid item>
               <img src={zcLogo} alt="zooclass logo" width="40" height="40" />
             </Grid>
             <Grid item>
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" sx={{ color: "background.default" }}>
                 ZooClass
               </Typography>
             </Grid>
@@ -49,9 +35,9 @@ function HomeLink(): JSX.Element {
 function AboutLink(): JSX.Element {
   return (
     <Box>
-      <Link to="/about">
-        <IconButton size="medium" aria-label="about">
-          <HelpIcon color="secondary" />
+      <Link to="/about" aria-label="about">
+        <IconButton size="large" aria-label="about">
+          <HelpIcon sx={{ color: "background.default" }} />
         </IconButton>
       </Link>
     </Box>
@@ -62,7 +48,7 @@ function MenuBar(): JSX.Element {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Grid container justifyContent={"space-between"} alignItems={"center"}>
+        <Grid container justifyContent="space-between" alignItems="center">
           <Grid item>
             <HomeLink />
           </Grid>

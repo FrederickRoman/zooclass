@@ -1,40 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-
+import { useContext, useEffect, useState } from "react";
+import {
+  Grid,
+  Box,
+  Paper,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+} from "@mui/material";
+import {makeStyles} from "@mui/styles";
 import zooBinaryFeatureType from "../../../../types/unions/zooBinaryFeatureType";
 import zooYesNoAnsType from "../../../../types/unions/zooYesNoAnsType";
-
 import ZooFormContext from "../../../../contexts/ZooFormContext";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    form_container: {
-      display: "inline-block",
-    },
-    text: {
-      heigh: "auto",
-      width: 100,
-    },
-  })
-);
 
 interface IFeatureRadioButtonProps {
   start: string;
   keyword: string;
   end: string;
 }
+
+const useStyles = makeStyles({
+  form_container: {
+    display: "inline-block",
+  },
+  text: {
+    heigh: "auto",
+    width: 100,
+  },
+});
 
 function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   const { start, keyword, end } = props;
@@ -47,10 +41,8 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   const ZooForm = useContext(ZooFormContext);
   const zooQnsDispatch = (ZooForm && ZooForm[1]) ?? null;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.name);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void =>
     setValue((event.target as HTMLInputElement).value as zooYesNoAnsType);
-  };
 
   useEffect(() => {
     if (zooQnsDispatch) {
@@ -65,15 +57,15 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
   }, [value, keyword, zooQnsDispatch]);
 
   const FormQuestion = (): JSX.Element => (
-    <div className={classes.text}>
+    <Box className={classes.text} sx={{ color: "black" }}>
       {start}
       <b>{keyword}</b>
       {end}
-    </div>
+    </Box>
   );
 
   const FormQuestionSection = (): JSX.Element => (
-    <Grid item container justifyContent={"center"} alignItems={"center"} xs={5}>
+    <Grid item container justifyContent="center" alignItems="center" xs={5}>
       <Grid item>
         <FormLabel component="legend">
           <FormQuestion />
@@ -98,9 +90,9 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
     return (
       <Grid
         container
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        wrap={"wrap"}
+        justifyContent="space-between"
+        alignItems="center"
+        wrap="wrap"
       >
         {FormLabels}
       </Grid>
@@ -125,7 +117,7 @@ function FeatureRadioButton(props: IFeatureRadioButtonProps) {
       <Paper elevation={3} className={classes.form_container}>
         <Box p={2}>
           <FormControl component="fieldset">
-            <Grid container justifyContent={"space-between"} alignItems={"center"}>
+            <Grid container justifyContent="space-between" alignItems="center">
               <FormQuestionSection />
               <FormChoicesSection />
             </Grid>

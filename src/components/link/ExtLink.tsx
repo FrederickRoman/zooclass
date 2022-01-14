@@ -1,21 +1,17 @@
 import Link from "@mui/material/Link";
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import { ReactNode } from "react";
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    link: {
-      color: "white",
-      textDecoration: "none",
-    },
-  })
-);
+import { makeStyles } from "@mui/styles";
 
 interface IProps {
-  children: ReactNode;
+  children: React.ReactNode;
   href: string;
 }
+
+const useStyles = makeStyles({
+  link: {
+    color: "white",
+    textDecoration: "none",
+  },
+});
 
 function ExtLink(props: IProps): JSX.Element {
   const { href } = props;

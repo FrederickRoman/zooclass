@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Bar } from "react-chartjs-2";
-
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-
+import { Box, Grid, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import zooClassType from "../../../types/unions/zooClassType";
 
 interface IProps {
@@ -23,26 +18,22 @@ const LABELS: readonly string[] = Object.freeze([
   "Insect",
   "Molusk",
 ]);
-const N_LABELS: number = LABELS.length;
 const DEFAULT_CHART_DATA: number[] = [
   0.29189333319664, 0, 0.08952232450246811, 0, 0.29646316170692444,
   0.15877649188041687,
 ];
 const DEFAULT_CONFIDENCE: number = 35;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    typography_title: {
-      color: "white",
-      fontSize: "1.5em",
-      padding: 5,
-    },
-  })
-);
+const useStyles = makeStyles({
+  typography_title: {
+    color: "white",
+    fontSize: "1.5em",
+    padding: 5,
+  },
+});
 
 function ZooResultsSection(props: IProps): JSX.Element {
   const { classOutput, probClass } = props;
-  console.log(probClass);
   const [confidence, setConfidence] = useState<number>(DEFAULT_CONFIDENCE);
   const [chartData, setChartData] = useState<number[]>(DEFAULT_CHART_DATA);
   const prevInputRef = useRef<number[]>([1]);
@@ -69,62 +60,64 @@ function ZooResultsSection(props: IProps): JSX.Element {
     }
     const probClassVals: number[] = Object.values(probClass);
     if (didInputChange(probClassVals)) updateChartData(probClassVals);
-  }, [probClass]);
+  }, [probClass, classOutput]);
 
-  return <>
-    <Box position="sticky" top={0} zIndex="appBar" bgcolor="#1b5e20">
-      <Grid container justifyContent={"center"} alignItems={"center"}>
-        <Grid item>
-          <Box>
-            <Typography
-              align={"center"}
-              variant={"h2"}
-              className={classes.typography_title}
-            >
-              {`${mostLikelyLabel} (~${confidence}% Confident)`}
-            </Typography>
-          </Box>
+  return (
+    <>
+      <Box position="sticky" top={0} zIndex="appBar" bgcolor="#1b5e20">
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item>
+            <Box>
+              <Typography
+                align="center"
+                variant="h2"
+                className={classes.typography_title}
+              >
+                {`${mostLikelyLabel} (~${confidence}% Confident)`}
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
-    <Box
-      position="sticky"
-      top={40}
-      height={"40vh"}
-      zIndex="appBar"
-      bgcolor="white"
-      boxShadow={3}
-      border={1}
-      m={1}
-    >
-      <Bar
-        type={Bar}
-        data={{
-          labels: LABELS,
-          datasets: [
-            {
-              backgroundColor: "rgba(27, 94, 32, 0.7)",
-              borderColor: "rgba(0,0,0,1)",
-              borderWidth: 2,
-              data: chartData,
+      </Box>
+      <Box
+        position="sticky"
+        top={40}
+        height="40vh"
+        zIndex="appBar"
+        bgcolor="white"
+        boxShadow={3}
+        border={1}
+        m={1}
+      >
+        <Bar
+          type={Bar}
+          data={{
+            labels: LABELS,
+            datasets: [
+              {
+                backgroundColor: "rgba(27, 94, 32, 0.7)",
+                borderColor: "rgba(0,0,0,1)",
+                borderWidth: 2,
+                data: chartData,
+              },
+            ],
+          }}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
             },
-          ],
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
+            animation: {
+              duration: 100,
             },
-          },
-          animation: {
-            duration: 100,
-          },
-        }}
-      />
-    </Box>
-  </>;
+          }}
+        />
+      </Box>
+    </>
+  );
 }
 
 export default ZooResultsSection;

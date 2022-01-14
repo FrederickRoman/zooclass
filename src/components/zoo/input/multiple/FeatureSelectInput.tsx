@@ -1,22 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import { Theme } from "@mui/material/styles";
-
-import createStyles from "@mui/styles/createStyles";
-import makeStyles from "@mui/styles/makeStyles";
-
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import { createStyles, makeStyles } from "@mui/styles";
+import { Box, Grid, InputLabel, MenuItem, FormControl } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
 import zooLegsNumber from "../../../../types/unions/zooLegsNumber";
 import zooMultipleFeatureType from "../../../../types/unions/zooMultipleFeatureType";
-
 import ZooFormContext from "../../../../contexts/ZooFormContext";
 
 type HandleChange = (
@@ -79,7 +67,7 @@ function FeatureSelectInput(props: IFeatureSelectInputProps): JSX.Element {
 
   return (
     <Box m={1} className={classes.container}>
-      <Grid container justifyContent={"space-between"} alignItems={"center"}>
+      <Grid container justifyContent="space-between" alignItems="center">
         <Grid item>
           <FormControl className={classes.formControl}>
             <InputLabel id={`legNum_${id}}`}>{label}</InputLabel>

@@ -1,8 +1,6 @@
 import Grid from "@mui/material/Grid";
-
 import IMultipleChoiceQuestion from "../../../../types/interfaces/IMultipleChoiceQuestion";
 import multipleChoiceQuestions from "../../../../assets/data/ts/multipleChoiceQuestions";
-
 import FeatureSelectInput from "./FeatureSelectInput";
 
 function FeatureSelectInputList(): JSX.Element {
@@ -19,7 +17,7 @@ function FeatureSelectInputList(): JSX.Element {
 
 function FeatureMultipleChoiceList(): JSX.Element {
   return (
-    <Grid container justifyContent={"center"} alignItems={"center"}>
+    <Grid container justifyContent="center" alignItems="center">
       <Grid item>
         <FeatureSelectInputList />
       </Grid>

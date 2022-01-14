@@ -19,13 +19,13 @@ function FeatureRadioButtons(): JSX.Element {
 
 function FeatureBinaryChoiceList(): JSX.Element {
   return (
-    <Grid container justifyContent={"center"} alignItems={"center"}>
+    <Grid container justifyContent="center" alignItems="center">
       <Grid
         item
         container
-        justifyContent={"space-around"}
-        alignItems={"center"}
-        wrap={"wrap"}
+        justifyContent="space-around"
+        alignItems="center"
+        wrap="wrap"
       >
         <FeatureRadioButtons />
       </Grid>

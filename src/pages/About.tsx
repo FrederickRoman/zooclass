@@ -1,11 +1,9 @@
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import {Box, Grid} from "@mui/material";
+
 
 function About(): JSX.Element {
-  console.log("I am in about");
   return (
-    <Container disableGutters>
+    <>
       <Box>
         <Grid container>
           <Grid item>
@@ -13,7 +11,7 @@ function About(): JSX.Element {
           </Grid>
         </Grid>
       </Box>
-    </Container>
+    </>
   );
 }
 
