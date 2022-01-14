@@ -1,18 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-
 import zooClassType from "../../types/unions/zooClassType";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
-
 import zooNNmodel from "../../services/classification/zooNNmodel";
-
 import { INeuralNetworkJSON, NeuralNetwork } from "brain.js/src/index";
 import DataProcessing from "../../services/classification/DataProcessing";
 
 type netModel = NeuralNetwork | null;
 
 function useZooClass(zooQnsState: IZooFormResponse) {
-  const { preprocessUnclassified } = DataProcessing;
-  const unclassfiedInput: number[] = preprocessUnclassified(zooQnsState);
+  const unclassfiedInput: number[] =
+    DataProcessing.preprocessUnclassified(zooQnsState);
 
   const INI_MODEL: netModel = null;
   const INIT_OUTENCODED: number[] = [1];
@@ -39,10 +36,9 @@ function useZooClass(zooQnsState: IZooFormResponse) {
 
     if (netModel) {
       if (didInputChange(unclassfiedInput)) {
-        const { encode, decode } = DataProcessing;
-        const encodedInput: number[] = encode(unclassfiedInput);
+        const encodedInput: number[] = DataProcessing.encode(unclassfiedInput);
         const encodedOutput: number[] = netModel.run(encodedInput);
-        const indexOfMax: number = decode(encodedOutput);
+        const indexOfMax: number = DataProcessing.decode(encodedOutput);
         const classOutput: zooClassType = (indexOfMax + 1) as zooClassType;
         setEncodedOutput(encodedOutput);
         setClassOutput(classOutput);
