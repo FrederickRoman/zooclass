@@ -20,7 +20,7 @@ function ZooInstructionsSection(): JSX.Element {
       <Grid container justifyContent="center" alignItems="center">
         <Grid item>
           <Typography variant="h1" className={classes.typography_instructions}>
-            Tell me about your animal, and I'll guess it.
+            Tell me about your animal, and I'll guess its type.
           </Typography>
         </Grid>
       </Grid>
