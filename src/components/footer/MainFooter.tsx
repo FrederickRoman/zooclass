@@ -1,13 +1,17 @@
-import { AppBar, Grid, Toolbar, Typography } from "@mui/material";
-import ExtLink from "../link/ExtLink";
+import { AppBar, Grid, Link, Toolbar, Typography } from "@mui/material";
 
 function CopyrightMsg(): JSX.Element {
   const curYear: number = new Date().getFullYear();
-  const copyrightholderSite = "https://www.frederickroman.com";
   return (
-    <ExtLink href={copyrightholderSite}>
+    <Link
+      href="https://www.frederickroman.com"
+      target="_blank"
+      rel="noopener"
+      color="#fff"
+      underline="none"
+    >
       <Typography variant="h6">&#169; Frederick Roman {curYear}</Typography>
-    </ExtLink>
+    </Link>
   );
 }
 
