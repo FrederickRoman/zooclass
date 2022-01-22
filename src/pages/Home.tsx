@@ -13,7 +13,7 @@ function Home(): JSX.Element {
   const { classOutput, encodedOutput } = useZooClassifier(zooQnsState);
 
   return (
-    <>
+    <main>
       <HeroBanner />
       <Divider />
       <ZooInstructionsSection />
@@ -23,7 +23,7 @@ function Home(): JSX.Element {
       <ZooFormContextProvider value={[zooQnsState, zooQnsDispatch]}>
         <ZooPanelSection />
       </ZooFormContextProvider>
-    </>
+    </main>
   );
 }
 
