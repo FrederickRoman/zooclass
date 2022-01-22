@@ -6,18 +6,11 @@ interface IProps {
   href: string;
 }
 
-const useStyles = makeStyles({
-  link: {
-    color: "white",
-    textDecoration: "none",
-  },
-});
-
 function ExtLink(props: IProps): JSX.Element {
   const { href } = props;
-  const classes = useStyles();
+
   return (
-    <Link href={href} target="_blank" rel="noopener" className={classes.link}>
+    <Link href={href} target="_blank" rel="noopener" color="#fff">
       {props.children}
     </Link>
   );
