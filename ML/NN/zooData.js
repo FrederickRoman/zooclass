@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * This dataset was taken from UCI Zoo Data Set (a public ML repository).
+ * @see https://archive.ics.uci.edu/ml/datasets/zoo
+ */
+
 const zooData = {
   aardvark: [1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 4, 0, 0, 1, 1],
   antelope: [1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 4, 1, 0, 1, 1],
