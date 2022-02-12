@@ -1,5 +1,4 @@
 import Link from "@mui/material/Link";
-import { makeStyles } from "@mui/styles";
 
 interface IProps {
   children: React.ReactNode;
@@ -7,11 +6,10 @@ interface IProps {
 }
 
 function ExtLink(props: IProps): JSX.Element {
-  const { href } = props;
-
+  const { href, children } = props;
   return (
     <Link href={href} target="_blank" rel="noopener" color="#fff">
-      {props.children}
+      {children}
     </Link>
   );
 }
