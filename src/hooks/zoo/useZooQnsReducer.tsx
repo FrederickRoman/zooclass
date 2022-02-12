@@ -1,3 +1,7 @@
+/**
+ * This reducer is used by the zoo form context to collect
+ * the zoo form responses.
+ */
 import { useReducer } from "react";
 import IZooBinaryChoices from "../../types/interfaces/IZooBinaryChoices";
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";

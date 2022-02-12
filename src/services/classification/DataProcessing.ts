@@ -1,3 +1,7 @@
+/**
+ * This class preprocesses the raw zoo form responses into a vector 
+ * that can, later on, be classified by the zoo NN model.
+ */
 import IZooFormResponse from "../../types/interfaces/IZooFormResponse";
 
 type binaryDigit = 0 | 1;

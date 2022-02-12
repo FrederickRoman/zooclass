@@ -1,3 +1,6 @@
+/**
+ * This context collects the user responses to the zoo form.
+ */
 import { createContext } from "react";
 import zooQnsReducerPair from "../types/unions/zooQnsReducerPair";
 
