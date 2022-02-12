@@ -42,3 +42,24 @@ yarn run start
 ```
 yarn run build
 ```
+
+## Data source
+
+See [UCI Zoo Data Set](https://archive.ics.uci.edu/ml/datasets/zoo)
+
+#### Creator: 
+
+Richard Forsyth
+
+#### Donor:
+
+Richard S. Forsyth
+8 Grosvenor Avenue
+Mapperley Park
+Nottingham NG3 5DX
+0602-621676
+
+#### UCI ML Repository citation.
+
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. 
+Irvine, CA: University of California, School of Information and Computer Science. 
